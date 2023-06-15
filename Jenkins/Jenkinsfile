@@ -40,7 +40,8 @@ podTemplate(containers: [
         stage('build') {
             container('docker') {
               echo "Building docker image..."
-	      echo "Original step was using docker for build." 	    
+	      echo "Original step was using docker for build. ${env.WORKSPACE}" 	
+	      sh "sleep 999"	    
 	      sh "/kaniko/executor --destination ${appimage}:${apptag} --context=${env.WORKSPACE}/spring-petclinic --force -v=debug"	    
 	      sh "echo docker build -t $appimage --no-cache ."
               sh "echo docker login $artifactory -u admin -p password"
