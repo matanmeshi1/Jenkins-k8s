@@ -41,7 +41,7 @@ podTemplate(containers: [
             container('docker') {
               echo "Building docker image..."
 	      echo "Original step was using docker for build." 	    
-	      sh "/kaniko/executor --destination ${appimage}:${apptag} --context=${env.WORKSPACE}/spring-petclinic --force -v=debug"	    
+	      sh "/kaniko/executor --destination ${appimage}:${apptag} --context=${env.WORKSPACE}/spring-petclinic"	    
 	      sh "echo docker build -t $appimage --no-cache ."
               sh "echo docker login $artifactory -u admin -p password"
               sh "echo docker push $appimage"
